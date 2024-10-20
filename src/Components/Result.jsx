@@ -1,5 +1,5 @@
 import React from "react";
-import { calculateInvestmentResults } from "../util/investment";
+import { calculateInvestmentResults, formatter } from "../util/investment";
 
 function Result({
   initialInvestmentInput,
@@ -15,7 +15,33 @@ function Result({
   });
   console.log(result);
 
-  return <div>Result</div>;
+  return (
+    <table id="result">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Investment Value</th>
+          <th>Interest (Year)</th>
+          <th>Total Interest</th>
+        </tr>
+      </thead>
+      <tbody>
+        {result.map((data) => {
+          const totalInvestment =
+            data.valueEndOfYear - data.annualInvestment * data.year;
+
+          return (
+            <tr key={data.year}>
+              <td>{data.year}</td>
+              <td>{formatter.format(data.valueEndOfYear)}</td>
+              <td>{formatter.format(data.interest)}</td>
+              <td>{formatter.format(totalInvestment)}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
 }
 
 export default Result;

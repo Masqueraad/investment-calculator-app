@@ -9,6 +9,8 @@ function App() {
   const [expectedReturn, setExpectedReturn] = useState("10");
   const [duration, setDuration] = useState("10");
 
+  const inputIsValid = duration >= 1;
+
   const handleInitialInvestment = (e) => {
     setInitialInvestment(e.target.value);
   };
@@ -21,26 +23,32 @@ function App() {
   const handleDuration = (e) => {
     setDuration(e.target.value);
   };
+
   return (
     <>
       <Header />
       <UserInput
-        initialInvestmentValue={initialInvestment}
-        annualInvestmentValue={annualInvestment}
-        expectedReturnValue={expectedReturn}
-        durationValue={duration}
+        initialInvestmentValue={+initialInvestment}
+        annualInvestmentValue={+annualInvestment}
+        expectedReturnValue={+expectedReturn}
+        durationValue={+duration}
         onChangeInitialInvestmentValue={handleInitialInvestment}
         onChangeAnnualInvestmentValue={handleAnnualInvestment}
         onChangeExpectedReturnValue={handleExpectedReturn}
         onChangeDurationValue={handleDuration}
       />
-      <Result
-        initialInvestmentInput={initialInvestment}
-        annualInvestmentInput={initialInvestment}
-        expectedReturnInput={annualInvestment}
-        expectedReturnValue={expectedReturn}
-        durationInput={duration}
-      />
+      {inputIsValid ? (
+        <Result
+          initialInvestmentInput={+initialInvestment}
+          annualInvestmentInput={+annualInvestment}
+          expectedReturnInput={+expectedReturn}
+          durationInput={+duration}
+        />
+      ) : (
+        <p className="center">
+          Duration can not be less than 1. Please, adjust the duration field
+        </p>
+      )}
     </>
   );
 }

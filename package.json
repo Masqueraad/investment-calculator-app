@@ -1,5 +1,5 @@
 {
-  "homepage": "https://masqueraad.github.io/investment-calculator",
+  "homepage": "https://Masqueraad.github.io/investment-calculator-app",
   "name": "react-essentials-practice",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "crypto": "npm run build && npm run deploy "
   },
   "dependencies": {
     "react": "^18.2.0",
